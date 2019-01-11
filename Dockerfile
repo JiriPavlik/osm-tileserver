@@ -85,6 +85,8 @@ RUN a2enconf mod_tile
 COPY apache.conf /etc/apache2/sites-available/000-default.conf
 COPY leaflet-demo.html /var/www/html/index.html
 
+COPY updatedb.sh /home/renderer/update.sh
+
 USER renderer
 
 # Install PostgreSQL
