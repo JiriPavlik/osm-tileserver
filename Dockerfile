@@ -85,9 +85,15 @@ RUN a2enconf mod_tile
 COPY apache.conf /etc/apache2/sites-available/000-default.conf
 COPY leaflet-demo.html /var/www/html/index.html
 
+# configure database updates
+USER root
 COPY updatedb.sh /home/renderer/update.sh
-
-USER renderer
+RUN apt-get -y install default-jre default-jdk gradle
+RUN mkdir -p /home/renderer/osmosis_workdir
+WORKDIR /home/renderer/src
+RUN git clone https://github.com/zverik/regional
+RUN chmod u+x /home/renderer/src/regional/trim_osc.py
+RUN apt-get install -y python-psycopg2 python-shapely python-lxml
 
 # Install PostgreSQL
 USER root
