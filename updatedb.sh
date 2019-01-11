@@ -22,7 +22,7 @@ osmosis --read-replication-interval workingDirectory="${WORKOSM_DIR}" --simplify
 
 /usr/bin/python /home/renderer/src/regional/trim_osc.py -d gis -p "${WORKOSM_DIR}/shape.poly" $WORKOSM_DIR/pipline.osc $WORKOSM_DIR/pipline.nds.osc
 
-osm2pgsql --append -s -e15-20  -o $WORKOSM_DIR/expired_shapes  -C 300 -G --hstore --style /home/renderer/src/openstreetmap-carto/openstreetmap-carto.style -tag-transform-script /home/renderer/src/openstreetmap-carto/openstreetmap-carto.lua -d gis $WORKOSM_DIR/pipline.nds.osc
+osm2pgsql --append -s -e15-20  -o $WORKOSM_DIR/expired_shapes  -C 300 -G --hstore --style /home/renderer/src/openstreetmap-carto/openstreetmap-carto.style --tag-transform-script /home/renderer/src/openstreetmap-carto/openstreetmap-carto.lua -d gis $WORKOSM_DIR/pipline.nds.osc
 
 render_expired --min-zoom=10 --delete-from=10 --map=ajt < $WORKOSM_DIR/expired_shapes
 
