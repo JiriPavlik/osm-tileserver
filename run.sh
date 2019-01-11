@@ -29,6 +29,7 @@ fi
     sed -i -E "s/num_threads=[0-9]+/num_threads=${THREADS:-4}/g" /usr/local/etc/renderd.conf
 
     # Run
+    echo "Ready to serve ..."
     sudo -u renderer renderd -f -c /usr/local/etc/renderd.conf
 
     exit 0
