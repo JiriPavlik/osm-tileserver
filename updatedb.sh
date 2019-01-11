@@ -8,18 +8,13 @@ fi
 
 if [ ! -f  $WORKOSM_DIR/configuration.txt ]; then
         osmosis --read-replication-interval-init workingDirectory=$WORKOSM_DIR
-        sed -i 's!baseUrl=http://planet.openstreetmap.org/!baseUrl=https://planet.openstreetmap.org/!' $WORKOSM_DIR/configuration.txt
-
 fi
-
 
 if [ ! -f  $WORKOSM_DIR/shape.poly ]; then
         wget https://download.geofabrik.de/europe/germany/niedersachsen.poly -O $WORKOSM_DIR/shape.poly
 fi
+sed -i 's!baseUrl=http://planet.openstreetmap.org/!baseUrl=https://planet.openstreetmap.org/!' $WORKOSM_DIR/configuration.txt
 
-
-
-WORKOSM_DIR=/home/renderer/osmosis_workdir
 export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 export PATH=$JAVA_HOME/bin:$PATH
 
