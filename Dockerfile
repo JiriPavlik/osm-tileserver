@@ -89,6 +89,7 @@ COPY leaflet-demo.html /var/www/html/index.html
 USER renderer
 RUN mkdir -p /home/renderer/osmosis_workdir
 USER root
+COPY configuration.txt /home/renderer/osmosis_workdir/configuration.txt
 COPY updatedb.sh /home/renderer/update.sh
 RUN chmod u+x /home/renderer/update.sh
 RUN apt-get -y install default-jre default-jdk gradle python-psycopg2 python-shapely python-lxml osmosis
