@@ -86,14 +86,18 @@ COPY apache.conf /etc/apache2/sites-available/000-default.conf
 COPY leaflet-demo.html /var/www/html/index.html
 
 # configure database updates
+USER renderer
+RUN mkdir -p /home/renderer/osmosis_workdir
 USER root
 COPY updatedb.sh /home/renderer/update.sh
 RUN chmod u+x /home/renderer/update.sh
 RUN apt-get -y install default-jre default-jdk gradle python-psycopg2 python-shapely python-lxml osmosis
-RUN mkdir -p /home/renderer/osmosis_workdir
 WORKDIR /home/renderer/src
 RUN git clone https://github.com/zverik/regional
 RUN chmod u+x /home/renderer/src/regional/trim_osc.py
+
+
+
 
 # Install PostgreSQL
 USER root
