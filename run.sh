@@ -32,6 +32,11 @@ fi
 
     # Run
     echo "Ready to serve ..."
-    sudo -u renderer renderd -f -c /usr/local/etc/renderd.conf
-
+    sudo -u renderer renderd -c /usr/local/etc/renderd.conf
+    
+    
+    while true; do
+        su renderer -c "/home/renderer/update.sh"
+        sleep 1m
+    done
     exit 0
