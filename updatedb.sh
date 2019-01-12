@@ -1,3 +1,5 @@
+echo "Updating OSM Database ..."
+
 cd ~/src/openstreetmap-carto
 WORKOSM_DIR=/home/renderer/osmosis_workdir
 
