@@ -28,7 +28,7 @@ USER renderer
 
 # Install and test Mapnik
 USER root
-RUN apt-get -y install fonts-noto-cjk fonts-noto-hinted fonts-noto-unhinted ttf-unifont npm nodejs autoconf apache2-dev libtool libxml2-dev libbz2-dev libgeos-dev libgeos++-dev libproj-dev gdal-bin libmapnik-dev mapnik-utils python-mapnik default-jre default-jdk gradle python-psycopg2 python-shapely python-lxml osmosis postgresql postgresql-contrib postgis postgresql-10-postgis-2.4
+RUN apt-get -y install sudo fonts-noto-cjk fonts-noto-hinted fonts-noto-unhinted ttf-unifont npm nodejs autoconf apache2-dev libtool libxml2-dev libbz2-dev libgeos-dev libgeos++-dev libproj-dev gdal-bin libmapnik-dev mapnik-utils python-mapnik default-jre default-jdk gradle python-psycopg2 python-shapely python-lxml osmosis postgresql postgresql-contrib postgis postgresql-10-postgis-2.4
 USER renderer
 RUN python -c 'import mapnik'
 
@@ -78,6 +78,7 @@ RUN mkdir -p /home/renderer/osmosis_workdir
 USER root
 COPY configuration.txt /home/renderer/osmosis_workdir/configuration.txt
 COPY updatedb.sh /home/renderer/update.sh
+RUN chown renderer /home/renderer/update.sh
 RUN chmod u+x /home/renderer/update.sh
 WORKDIR /home/renderer/src
 RUN git clone https://github.com/zverik/regional
@@ -85,7 +86,6 @@ RUN chmod u+x /home/renderer/src/regional/trim_osc.py
 
 # Start running
 USER root
-RUN apt-get install -y sudo
 COPY run.sh /
 ENTRYPOINT ["/run.sh"]
 CMD []
