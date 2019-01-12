@@ -59,10 +59,6 @@ USER renderer
 RUN carto -v
 RUN carto project.mml > mapnik.xml
 
-# Load shapefiles
-WORKDIR /home/renderer/src/openstreetmap-carto
-RUN scripts/get-shapefiles.py
-
 # Install fonts
 USER root
 RUN apt-get install -y fonts-noto-cjk fonts-noto-hinted fonts-noto-unhinted ttf-unifont
