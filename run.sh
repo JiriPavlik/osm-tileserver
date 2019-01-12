@@ -2,6 +2,8 @@
 
 if [ ! -f /root/firststart ]; then
 
+    /home/renderer/src/openstreetmap-carto/scripts/get-shapefiles.py
+    
     service postgresql start
     sudo -u postgres createuser renderer
     sudo -u postgres createdb -E UTF8 -O renderer gis
