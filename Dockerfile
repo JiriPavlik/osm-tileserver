@@ -89,3 +89,4 @@ USER root
 COPY run.sh /
 ENTRYPOINT ["/run.sh"]
 CMD []
+EXPOSE 80/tcp
