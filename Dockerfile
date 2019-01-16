@@ -77,7 +77,7 @@ USER renderer
 RUN mkdir -p /home/renderer/osmosis_workdir
 USER root
 COPY configuration.txt /home/renderer/osmosis_workdir/configuration.txt
-COPY updatedb.sh /home/renderer/update.sh
+COPY update.sh /home/renderer/update.sh
 RUN chown renderer /home/renderer/update.sh
 RUN chmod u+x /home/renderer/update.sh
 WORKDIR /home/renderer/src
