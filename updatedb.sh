@@ -23,7 +23,13 @@ osm2pgsql --append -s -e15-20  -o $WORKOSM_DIR/expired_shapes  -C 300 -G --hstor
 
 render_expired --min-zoom=10 --delete-from=10 --map=ajt < $WORKOSM_DIR/expired_shapes
 
+if [ ! -f /home/renderer/prerenderer_run/home/renderer/prerenderer_runningning ]; then
+touch /home/renderer/prerenderer_running
+
 render_list -a -z 1 -Z 7 -m ajt
+
+rm /home/renderer/prerenderer_running
+fi
 
 rm $WORKOSM_DIR/pipline.osc
 rm $WORKOSM_DIR/pipline.nds.osc
